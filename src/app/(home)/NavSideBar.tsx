@@ -20,7 +20,7 @@ interface NavSideBarProps {
 
 const NavSideBar = ({ items, isOpen, onOpenChange }: NavSideBarProps) => {
   return (
-    <Sheet open={isOpen}>
+    <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent side="left" className="p-0 transition-none">
         <SheetHeader className="p-4 border-b">
           <SheetTitle>Menu</SheetTitle>
