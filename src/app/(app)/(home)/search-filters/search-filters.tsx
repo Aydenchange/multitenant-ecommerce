@@ -1,10 +1,9 @@
-import CategoryDropdown from "./CategoryDropdown";
 import { getPayload } from "payload";
+import Categroies from "./categroies";
 import configPromise from "@payload-config";
-import { ca } from "payload/i18n/ca";
-import { Category } from "@/payload-types";
+import SearchInput from "./search-input";
 
-const Categroies = async () => {
+const SearchFilter = async () => {
   const payload = await getPayload({
     config: configPromise,
   });
@@ -13,6 +12,7 @@ const Categroies = async () => {
     depth: 1,
     collection: "categories",
     pagination: false,
+    sort: "name",
     where: { parent: { exists: false } },
   });
 
@@ -24,18 +24,12 @@ const Categroies = async () => {
       subcategories: undefined,
     })),
   }));
-
   return (
-    <div className="relative w-full">
-      <div className="flex flex-nowrap items-center">
-        {formattedData.map((category) => (
-          <div key={category.id}>
-            <CategoryDropdown category={category} isActive={false} />
-          </div>
-        ))}
-      </div>
+    <div className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full">
+      <SearchInput />
+      <Categroies data={formattedData} />
     </div>
   );
 };
 
-export default Categroies;
+export default SearchFilter;
