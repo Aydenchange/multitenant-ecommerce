@@ -1,18 +1,22 @@
 "use client";
 
-import SubcategoryMenu from "./SubcategoryMenu";
+import SubcategoryMenu from "./subcategory-menu";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Category } from "@/payload-types";
-import Link from "next/link";
 import { useState } from "react";
 
 interface CategoryDropdownProps {
   category: Category;
   isActive: boolean;
+  isNavigationHovered: boolean;
 }
 
-const CategoryDropdown = ({ category, isActive }: CategoryDropdownProps) => {
+const CategoryDropdown = ({
+  category,
+  isActive,
+  isNavigationHovered,
+}: CategoryDropdownProps) => {
   const [openSubCategories, setOpenSubCategories] = useState(false);
 
   return (
@@ -25,12 +29,12 @@ const CategoryDropdown = ({ category, isActive }: CategoryDropdownProps) => {
         <Button
           className={cn(
             "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
-            isActive && "bg-white border-primary",
+            isActive && !isNavigationHovered && "bg-white border-primary",
           )}
         >
           {category.name}
         </Button>
-        <SubcategoryMenu data={category} isOpen={openSubCategories} />
+        <SubcategoryMenu category={category} isOpen={openSubCategories} />
       </div>
     </div>
   );

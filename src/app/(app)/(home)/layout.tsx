@@ -1,7 +1,6 @@
-import Categroies from "./Categroies";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
-import SearchFilter from "./SearchFilter";
+import Footer from "./footer";
+import NavBar from "./navbar";
+import SearchFilter from "./search-filters/search-filters";
 
 export default function RootLayout({
   children,
